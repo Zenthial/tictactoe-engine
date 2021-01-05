@@ -2,6 +2,7 @@ public class Board {
     // "" - square unfilled, "X" - X, "O" - O
     private int rows = 3;
     private int columns = 3;
+    private int moves = 0;
     private String[][] boardState = new String[columns][rows];;
 
     Board() {
@@ -18,9 +19,30 @@ public class Board {
         return this.boardState;
     }
 
+    // instead of returning a complicated array of multiple smaller arrays, we just use a simple position class which stores
+    // position information, that way we can easily return a position array with specific information
+    public Position[] GetOpenSquares() {
+        int openSquaresLeft = (columns*rows) - moves;
+        Position[] openSquares = new Position[openSquaresLeft];
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                if (this.boardState[i][j].equals("")) {
+                    Position openSquare = new Position(i, j);
+                    openSquaresLeft--;
+                    if (openSquaresLeft >= 0) {
+                        openSquares[openSquaresLeft] = openSquare;
+                    }
+                }
+            }
+        }
+
+        return openSquares;
+    }
+
     public boolean SetTile(String letter, int x, int y) {
         if ((this.boardState[y][x]).equals("")) {
             this.boardState[y][x] = letter;
+            this.moves++;
             return true;
         } else {
             return false;
@@ -44,5 +66,6 @@ public class Board {
         for (int i = 0; i < rows; i++) {
             System.out.print(this.boardState[2][i] + "\t");
         }
+        System.out.print("\n");
     }
 }
