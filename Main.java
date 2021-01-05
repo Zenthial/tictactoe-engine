@@ -5,6 +5,8 @@ class Main {
             If you're viewing this in Repl.it, it sadly does not support javadoc for some odd reason
         */
 
+        System.out.println("\nWelcome to Tom's Tic-Tac-Toe Engine. Tic-Tac-Toe is drawn by force, but let's see if you can win!");
+
         Game newGame = new Game();
 
         newGame.Start();

@@ -33,6 +33,8 @@ public class Game {
             System.out.println("It's a draw!");
 
         this.board.RenderBoard();
+
+        System.out.println("Thanks for playing!");
     }
     
     /**Recursive until the player plays a move that isn't occupied */
