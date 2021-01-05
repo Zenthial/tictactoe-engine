@@ -53,6 +53,11 @@ public class Board {
         return this.boardState[y][x];
     }
 
+    public int CheckWin() {
+        
+        return -1;
+    }
+
     public void RenderBoard() {
         System.out.print("\t0\t1\t2\n\n0\t");
         for (int i = 0; i < rows; i++) {
