@@ -10,6 +10,9 @@ The engine needs to take the best squares every time. First, the engine checks i
 
 ## Code Structure
 All engine code is located in Engine.java
+
 Board.java controls the actual board rendering and where everything is on the board. It currently uses a 2d array for piece storage
+
 Position.java is a wrapper for position data so we don't have complicated arrays
+
 Game.java handles the actual interaction between a player and the program
