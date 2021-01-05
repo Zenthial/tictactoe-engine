@@ -53,8 +53,110 @@ public class Board {
         return this.boardState[y][x];
     }
 
+    /**@return -1 if there are no wins, 0 if Os have won, 1 if Xs have won */
     public int CheckWin() {
-        
+        int winOnColumns = CheckIfWinOnColumns();
+        int winOnRows = CheckIfWinOnRows();
+        int winOnDiags = CheckIfWinOnDiagonals();
+
+        if (winOnColumns > -1)
+            return winOnColumns;
+        if (winOnRows > -1)
+            return winOnRows;
+        if (winOnDiags > -1)
+            return winOnDiags;
+
+        return -1;
+    }
+    
+    /** @return -1 if there are no wins, 0 if Os have won, 1 if Xs have won */
+    private int CheckIfWinOnRows() {
+        for (int i = 0; i < 3; i++) {
+            int numOfOs = 0;
+            int numOfXs = 0;
+            for (int j = 0; j < 3; j++) {
+                // flips from the columns
+                String tile = GetTile(i, j);
+                if (tile.equals("O")) {
+                    numOfOs++;
+                } else if (tile.equals("X")) {
+                    numOfXs++;
+                }
+            }
+
+            if (numOfOs == 3) {
+                return 0;
+            } else if (numOfXs == 3) {
+                return 1;
+            }
+        }
+
+        return -1;
+    }
+
+    /** @return -1 if there are no wins, 0 if Os have won, 1 if Xs have won */
+    private int CheckIfWinOnColumns() {
+        for (int i = 0; i < 3; i++) {
+            int numOfOs = 0;
+            int numOfXs = 0;
+            for (int j = 0; j < 3; j++) {
+                // flips from the rows
+                String tile = GetTile(j, i);
+                if (tile.equals("O")) {
+                    numOfOs++;
+                } else if (tile.equals("X")) {
+                    numOfXs++;
+                }
+            }
+
+            if (numOfOs == 3) {
+                return 0;
+            } else if (numOfXs == 3) {
+                return 1;
+            }
+        }
+
+        return -1;
+    }
+
+    /** @return -1 if there are no wins, 0 if Os have won, 1 if Xs have won*/
+    private int CheckIfWinOnDiagonals() {
+        for (int i = 0; i < 3; i++) {
+            int numOfOs = 0;
+            int numOfXs = 0;
+            String tile = GetTile(i, i);
+            if (tile.equals("O")) {
+                numOfOs++;
+            } else if (tile.equals("X")) {
+                numOfXs++;
+            }
+
+            if (numOfOs == 3) {
+                return 0;
+            } else if (numOfXs == 3) {
+                return 1;
+            }
+        }
+
+        int startingX = 2;
+        for (int i = 0; i < 3; i++) {
+            int numOfOs = 0;
+            int numOfXs = 0;
+            String tile = GetTile(i, startingX);
+            startingX--;
+            if (tile.equals("O")) {
+                numOfOs++;
+            } else if (tile.equals("X")) {
+                numOfXs++;
+            }
+
+            if (numOfOs == 3) {
+                return 0;
+            } else if (numOfXs == 3) {
+                return 1;
+            }
+        }
+
         return -1;
     }
 

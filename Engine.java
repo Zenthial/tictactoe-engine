@@ -3,7 +3,7 @@ public class Engine {
     public static Position[] sides = new Position[] {new Position(0, 1), new Position(2, 1), new Position(1, 0), new Position(1, 2)};
     public static Position middle = new Position(1, 1);
 
-    public static void PlayBestMove(Board board, int lastX, int lastY, int moveNum) {
+    public static void PlayBestMove(Board board, int moveNum) {
         if (moveNum == 1) {
             // returned in the form [x,y]
             int[] bookMove = BookMoves(board);
@@ -180,14 +180,14 @@ public class Engine {
 
         int startingX = 2;
         for (int i = 0; i < 3; i++) {
-            int numOfXs = 0;
+            int numOfOs = 0;
             String tile = board.GetTile(i, startingX);
             startingX--;
             if (tile.equals("O")) {
-                numOfXs++;
+                numOfOs++;
             }
 
-            if (numOfXs == 2) {
+            if (numOfOs == 2) {
                 return 1;
             }
         }
