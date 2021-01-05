@@ -11,14 +11,17 @@ public class Game {
     
     public void Start() {
         int gameMoves = 0;
+        boolean lastPlayerMove = false; // false for Os, true for Xs
         while (gameMoves < 9) {
+            this.board.RenderBoard();
             if (this.board.CheckWin() > -1)
                 break;
-            if (gameMoves % 0 == 0) {
+            if (!lastPlayerMove) {
                 GetPlayerMove();
             } else {
                 GetComputerMove(board, gameMoves);
             }
+            lastPlayerMove = !lastPlayerMove;
             gameMoves++;
         }
         
@@ -28,6 +31,8 @@ public class Game {
             System.out.println("Xs have won!");
         if (this.board.CheckWin() == -1)
             System.out.println("It's a draw!");
+
+        this.board.RenderBoard();
     }
     
     /**Recursive until the player plays a move that isn't occupied */

@@ -5,9 +5,8 @@ class Main {
             If you're viewing this in Repl.it, it sadly does not support javadoc for some odd reason
         */
 
-        Board gameBoard = new Board();
+        Game newGame = new Game();
 
-        System.out.println(gameBoard.SetTile("X", 1, 2));
-        gameBoard.RenderBoard();
+        newGame.Start();
     }
 }

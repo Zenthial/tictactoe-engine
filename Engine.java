@@ -127,15 +127,18 @@ public class Engine {
     private static int CheckIfComputerWinOnRows(Board board) {
         for (int i = 0; i < 3; i++) {
             int numOfOs = 0;
+            int numOfXs = 0;
             for (int j = 0; j < 3; j++) {
                 // flips from the columns
                 String tile = board.GetTile(i, j);
                 if (tile.equals("O")) {
                     numOfOs++;
+                } else if (tile.equals("X")) {
+                    numOfXs++;
                 }
             }
 
-            if (numOfOs == 2) {
+            if (numOfOs == 2 && numOfXs == 0) {
                 return i;
             }
         }
@@ -147,17 +150,20 @@ public class Engine {
     private static int CheckIfComputerWinOnColumns(Board board) {
         for (int i = 0; i < 3; i++) {
             int numOfOs = 0;
+            int numOfXs = 0;
             int j;
             for (j = 0; j < 3; j++) {
                 // flips from the rows
                 String tile = board.GetTile(j, i);
                 if (tile.equals("O")) {
                     numOfOs++;
+                } else if (tile.equals("X")) {
+                    numOfXs++;
                 }
             }
 
-            if (numOfOs == 2) {
-                return j;
+            if (numOfOs == 2 && numOfXs == 0) {
+                return i;
             }
         }
 
@@ -168,12 +174,15 @@ public class Engine {
     private static int CheckIfComputerWinOnDiagonals(Board board) {
         for (int i = 0; i < 3; i++) {
             int numOfOs = 0;
+            int numOfXs = 0;
             String tile = board.GetTile(i, i);
             if (tile.equals("O")) {
                 numOfOs++;
+            } else if (tile.equals("X")) {
+                numOfXs++;
             }
 
-            if (numOfOs == 2) {
+            if (numOfOs == 2 && numOfXs == 0) {
                 return 0;
             }
         }
@@ -181,13 +190,16 @@ public class Engine {
         int startingX = 2;
         for (int i = 0; i < 3; i++) {
             int numOfOs = 0;
+            int numOfXs = 0;
             String tile = board.GetTile(i, startingX);
             startingX--;
             if (tile.equals("O")) {
                 numOfOs++;
+            } else if (tile.equals("X")) {
+                numOfXs++;
             }
 
-            if (numOfOs == 2) {
+            if (numOfOs == 2 && numOfXs == 0) {
                 return 1;
             }
         }
@@ -199,15 +211,18 @@ public class Engine {
     private static int CheckIfOpponentWinOnRows(Board board) {
         for (int i = 0; i < 3; i++) {
             int numOfXs = 0;
+            int numOfOs = 0;
             for (int j = 0; j < 3; j++) {
                 // flips from the columns
                 String tile = board.GetTile(i, j);
-                if (tile.equals("X")) {
+                if (tile.equals("O")) {
+                    numOfOs++;
+                } else if (tile.equals("X")) {
                     numOfXs++;
                 }
             }
 
-            if (numOfXs == 2) {
+            if (numOfXs == 2 && numOfOs == 0) {
                 return i;
             }
         }
@@ -219,17 +234,20 @@ public class Engine {
     private static int CheckIfOpponentWinOnColumns(Board board) {
         for (int i = 0; i < 3; i++) {
             int numOfXs = 0;
+            int numOfOs = 0;
             int j;
             for (j = 0; j < 3; j++) {
                 // flips from the rows
                 String tile = board.GetTile(j, i);
-                if (tile.equals("X")) {
+                if (tile.equals("O")) {
+                    numOfOs++;
+                } else if (tile.equals("X")) {
                     numOfXs++;
                 }
             }
 
-            if (numOfXs == 2) {
-                return j;
+            if (numOfXs == 2 && numOfOs == 0) {
+                return i;
             }
         }
 
@@ -240,12 +258,15 @@ public class Engine {
     private static int CheckIfOpponentWinOnDiagonals(Board board) {
         for (int i = 0; i < 3; i++) {
             int numOfXs = 0;
+            int numOfOs = 0;
             String tile = board.GetTile(i, i);
-            if (tile.equals("X")) {
+            if (tile.equals("O")) {
+                numOfOs++;
+            } else if (tile.equals("X")) {
                 numOfXs++;
             }
 
-            if (numOfXs == 2) {
+            if (numOfXs == 2 && numOfOs == 0) {
                 return 0;
             }
         }
@@ -253,13 +274,17 @@ public class Engine {
         int startingX = 2;
         for (int i = 0; i < 3; i++) {
             int numOfXs = 0;
+            int numOfOs = 0;
             String tile = board.GetTile(i, startingX);
             startingX--;
-            if (tile.equals("X")) {
+            if (tile.equals("O")) {
+                numOfOs++;
+            } else if (tile.equals("X")) {
                 numOfXs++;
             }
 
-            if (numOfXs == 2) {
+            System.out.println(numOfXs);
+            if (numOfXs == 2 && numOfOs == 0) {
                 return 1;
             }
         }

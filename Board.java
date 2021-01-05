@@ -121,27 +121,27 @@ public class Board {
 
     /** @return -1 if there are no wins, 0 if Os have won, 1 if Xs have won*/
     private int CheckIfWinOnDiagonals() {
+        int numOfOs = 0;
+        int numOfXs = 0;
         for (int i = 0; i < 3; i++) {
-            int numOfOs = 0;
-            int numOfXs = 0;
             String tile = GetTile(i, i);
             if (tile.equals("O")) {
                 numOfOs++;
             } else if (tile.equals("X")) {
                 numOfXs++;
             }
+        }
 
-            if (numOfOs == 3) {
-                return 0;
-            } else if (numOfXs == 3) {
-                return 1;
-            }
+        if (numOfOs == 3) {
+            return 0;
+        } else if (numOfXs == 3) {
+            return 1;
         }
 
         int startingX = 2;
+        numOfOs = 0;
+        numOfXs = 0;
         for (int i = 0; i < 3; i++) {
-            int numOfOs = 0;
-            int numOfXs = 0;
             String tile = GetTile(i, startingX);
             startingX--;
             if (tile.equals("O")) {
@@ -149,19 +149,19 @@ public class Board {
             } else if (tile.equals("X")) {
                 numOfXs++;
             }
+        }
 
-            if (numOfOs == 3) {
-                return 0;
-            } else if (numOfXs == 3) {
-                return 1;
-            }
+        if (numOfOs == 3) {
+            return 0;
+        } else if (numOfXs == 3) {
+            return 1;
         }
 
         return -1;
     }
 
     public void RenderBoard() {
-        System.out.print("\t0\t1\t2\n\n0\t");
+        System.out.print("\n\t0\t1\t2\n\n0\t");
         for (int i = 0; i < rows; i++) {
             System.out.print(this.boardState[0][i] + "\t");
         }
@@ -173,6 +173,6 @@ public class Board {
         for (int i = 0; i < rows; i++) {
             System.out.print(this.boardState[2][i] + "\t");
         }
-        System.out.print("\n");
+        System.out.print("\n\n");
     }
 }
